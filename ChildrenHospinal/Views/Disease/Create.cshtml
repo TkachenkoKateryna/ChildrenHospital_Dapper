@@ -1,0 +1,47 @@
+﻿@model Disease
+
+<form asp-action="Create" method="post" class="form-horizontal" role="form">
+
+    <h3>Создать болезнь</h3>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="col-md-2 control-label" >Название</label>
+        <div class="col-md-5">
+            <input asp-for="Name" class="form-control" placeholder="Ангина" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Code" class="col-md-2 control-label">Код</label>
+        <div class="col-md-5">
+            <input asp-for="Code" class="form-control"  placeholder="К114" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Information" class="col-md-2 control-label">Информация</label>
+        <div class="col-md-5">
+            <input asp-for="Information" class="form-control" />
+            <span asp-validation-for="Information" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Infectivity" class="col-md-2 control-label">Инфекционность</label>
+        <div class="col-md-5">
+            <input asp-for="Infectivity" class="form-control" />
+            <span asp-validation-for="Infectivity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" style="background-color: #006400;" value="Создать" />
+        </div>
+    </div>
+</form>
+

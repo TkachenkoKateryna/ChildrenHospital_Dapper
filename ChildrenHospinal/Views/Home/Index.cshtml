@@ -1,0 +1,54 @@
+﻿
+@model List<ChildrenHospinal.Models.TimeTable.TimeTable>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Carousel" />
+
+<h2>Дата: @DateTime.Now.ToShortDateString()</h2>
+<h3>День недели: @DateTime.Now.DayOfWeek</h3>
+<table class="table table-bordered table-striped">
+    <thead style="background:green;width:1000px;">
+        <tr>
+            <th>
+                Доктор
+            </th>
+            <th>
+                Специальность
+            </th>
+            <th>
+                Время начала прийома
+            </th>
+            <th >
+                Время конца прийома
+            </th>
+            <th>
+                Кабинет
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Doctor.FullName
+                </td>
+                <td>
+                    @item.Speciality.Name
+                </td>
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @item.EndTime
+                </td>
+                <td>
+                    @item.Room
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,42 @@
+﻿@model DoctorViewModel
+
+    <form asp-action="Edit" method="post" class="form-horizontal" role="form">
+
+        <h3>Редактировать доктора</h3>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @Html.HiddenFor(modelItem => Model.Doctor.DoctorId)
+        <div class="form-group">
+            <label asp-for="Doctor.FullName" class="col-md-2 control-label">ФИО</label>
+            <div class="col-md-5">
+                <input asp-for="Doctor.FullName" class="form-control" />
+                <span asp-validation-for="Doctor.FullName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Doctor.PhoneNumber" class="col-md-2 control-label">Номер</label>
+            <div class="col-md-5">
+                <input asp-for="Doctor.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Doctor.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Doctor.Degree, "Звание", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.Doctor.Degree, new SelectList(Model.Degrees), "", new { @class = "form-control " })
+                @Html.ValidationMessageFor(m => m.Doctor.Degree)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.items,"Специальности", new { @class = "col-md-2 control-label" })
+            @Html.ListBoxFor(m => m.items, Model.Specilities,  new { @disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" class="btn btn-primary" style="background-color: #006400;" value="Редактировать" />
+            </div>
+        </div>
+    </form>
+
+
+

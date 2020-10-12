@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model RandomVaccinationViewModel
+
+    <div id="filterBar" class="sidenav">
+        @using (Html.BeginForm("ShowVaccinations", "Vaccination"))
+        {
+            <div class="cd-filter-block">
+                <div>
+                    @Html.LabelFor(m => m.Filter.Done, "Сделано")
+                </div>
+                <div>
+                    @Html.RadioButton("Done", true, new { id = "allDone" })
+                    <span>Только сделанные</span> <br />
+                </div>
+                <div>
+                    @Html.RadioButton("Done", false, new { id = "allNotDone" })
+                    <span>Только не сделанные</span> <br />
+                </div>
+            </div>
+
+            <span>
+                <button class="btn btn-link btn-sm" id="discard">Сбросить</button>
+            </span>
+            <button type="submit" class="btn btn-primary " style="background-color: #006400">Отфильтровать</button>
+        }
+
+    </div>
+<div id="main">
+
+    <h2 style="text-align:center">Прививки</h2>
+
+    <span style="font-size:30px;cursor:pointer" id="open">&#9776; Фильтр</span>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Пациент
+                </th>
+                <th>
+                    Название прививки
+                </th>
+                <th>
+                    Дата
+                </th>
+                <th>
+                    Сделано
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Vaccinations)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Done)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#open').on('click', function () {
+                if ($('#filterBar').css("width") == '0px') {
+                    $('#filterBar').attr('style', 'width:300px');
+                    $('#main').attr('style', 'margin-left:300px');
+                } else {
+                    $('#filterBar').attr('style', 'width:0px');
+                    $('#main').attr('style', 'margin-left:0px');
+                }
+            });
+
+
+            $('#discard').on('click', function () {
+                $("#allDone").val("");
+                $("#allNotDone").val("");
+            });
+        });
+    </script>
+}

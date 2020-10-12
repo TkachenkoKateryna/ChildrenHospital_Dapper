@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/29/2019 17:43:51" ReportInfo.Modified="11/29/2019 20:49:54" ReportInfo.CreatorVersion="2019.4.15.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    
+  }
+}
+</ScriptText>
+  <Styles>
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="LightSkyBlue" Font="Arial, 24pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="White" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="AliceBlue" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection1" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGii1ec+FTBlaXNgpHF5iF7LK8YxIHtclf79dSd/cyQdT9gBShyftKBIbFAw8DX0w4XopUgr4Ft/i48ae3pmydqFSs6qHFC1XSp2l4pAQPEyUOyi0wq3iMIsmWlbvX9iuiNfoAsUDHrOcodbjjPNezVtCThsE7pN8BM5YMCirO4IB8H6oHBycty4zDOA+nPlhYrE6HrVEhh9vNYaoC+clfu8=">
+      <TableDataSource Name="Table2" Alias="PatientsVaccination" DataType="System.Int32" Enabled="true" SelectCommand="SELECT Patients.[Full name], Patients.DOB, VaccinationPlan.Name, VaccinationProcedure.Date, VaccinationProcedure.Done, VaccinationProcedure.Date&#13;&#10;FROM VaccinationProcedure&#13;&#10;FULL JOIN Patients&#13;&#10;On Patients.PatientId = VaccinationProcedure.PatientId&#13;&#10;LEFT JOIN VaccinationPlan&#13;&#10;On VaccinationPlan.VaccinationId = VaccinationProcedure.VaccinationId;">
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="DOB" DataType="System.DateTime"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="Done" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="Date1" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGii1ec+FTBlaXNgpHF5iF7LK8YxIHtclf79dSd/cyQdT9gBShyftKBIbFAw8DX0w4XopUgr4Ft/i48ae3pmydqFSs6qHFC1XSp2l4pAQPEyUOyi0wq3iMIsmWlbvX9iuiNfoAsUDHrOcodbjjPNezVtCThsE7pN8BM5YMCirO4IB8H6oHBycty4zDOA+nPlhYiZ8Pn1mNda87I8JKhn9hZU=">
+      <TableDataSource Name="Patients" DataType="System.Int32" Enabled="true" TableName="Patients">
+        <Column Name="PatientId" DataType="System.Int32"/>
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="DOB" DataType="System.DateTime"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="InstitutionId" DataType="System.Int32"/>
+        <Column Name="DoctorId" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="DoctorSpeciality" DataType="System.Int32" Enabled="true" TableName="DoctorSpeciality">
+        <Column Name="SpecialityId" DataType="System.Int32"/>
+        <Column Name="DoctorId" DataType="System.Int32"/>
+        <Column Name="DoctorSpecialityId" DataType="System.Int32"/>
+        <Column Name="Practice" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="Specialities" DataType="System.Int32" Enabled="true" TableName="Specialities">
+        <Column Name="SpecialityId" DataType="System.Int32"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Information" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Doctors" DataType="System.Int32" Enabled="true" TableName="Doctors">
+        <Column Name="DoctorId" DataType="System.Int32"/>
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="Phone number" DataType="System.String"/>
+        <Column Name="Degree" DataType="System.String"/>
+        <Column Name="Deleted" DataType="System.Boolean" BindableControl="CheckBox"/>
+      </TableDataSource>
+      <TableDataSource Name="Table" Alias="PatientInformation" DataType="System.Int32" Enabled="true" SelectCommand="SELECT STRING_AGG(Patients.[Full name], ' ') FROM Patients&#13;&#10;INNER JOIN Doctors&#13;&#10;ON Patients.DoctorId = Doctors.DoctorId&#13;&#10;Group By Patients.DoctorId">
+        <Column Name="Column1" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="PatientsInformation2" DataType="System.Int32" Enabled="true" SelectCommand="SELECT Patients.PatientId, Patients.[Full name],  Patients.DOB, DATEDIFF(YEAR, Patients.DOB, CURRENT_TIMESTAMP)  AS AGE,  Patients.Address,Institutions.Name , Doctors.[Full name] &#13;&#10;FROM Patients&#13;&#10;LEFT JOIN Doctors&#13;&#10;ON Patients.DoctorId = Doctors.DoctorId&#13;&#10;LEFT JOIN Institutions&#13;&#10;ON Patients.InstitutionId = Institutions.InstitutionId&#13;&#10;&#13;&#10;">
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="AGE" DataType="System.Int32"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Full name1" DataType="System.String"/>
+        <Column Name="DOB" DataType="System.DateTime"/>
+        <Column Name="PatientId" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="Institutions" DataType="System.Int32" Enabled="true" TableName="Institutions">
+        <Column Name="InstitutionId" DataType="System.Int32"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Phone number" DataType="System.String"/>
+        <Column Name="Director" DataType="System.String"/>
+        <Column Name="Deleted" DataType="System.Boolean" BindableControl="CheckBox"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" DataType="System.Int32" Enabled="true" SelectCommand="SELECT Patients.PatientId, Patients.[Full name], Patients.DOB, VaccinationPlan.Name, VaccinationProcedure.Date, VaccinationProcedure.Done, VaccinationProcedure.Date&#13;&#10;FROM VaccinationProcedure&#13;&#10;FULL JOIN Patients&#13;&#10;On Patients.PatientId = VaccinationProcedure.PatientId&#13;&#10;LEFT JOIN VaccinationPlan&#13;&#10;On VaccinationPlan.VaccinationId = VaccinationProcedure.VaccinationId&#13;&#10;">
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="DOB" DataType="System.DateTime"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="Date" DataType="System.DateTime"/>
+        <Column Name="Done" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="Date1" DataType="System.DateTime"/>
+        <Column Name="PatientId" DataType="System.Int32"/>
+        <CommandParameter Name="Parameter" DataType="22"/>
+      </TableDataSource>
+      <TableDataSource Name="new_table" DataType="System.Int32" Enabled="true" TableName="new_table">
+        <Column Name="PatientId" DataType="System.Int32"/>
+        <Column Name="Full name" DataType="System.String"/>
+        <Column Name="DOB" DataType="System.DateTime"/>
+        <Column Name="AGE" DataType="System.Int32"/>
+        <Column Name="Address" DataType="System.String"/>
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="fullnamedoctor" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Dock="Fill" Fill.Color="LightSkyBlue" Text="Patients" HorzAlign="Center" VertAlign="Center" Font="Arial, 24pt, style=Bold" Style="Header"/>
+      <SVGObject Name="SVG1" Left="-9450" Top="-9450" Width="75.6" Height="75.6"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="41.8" Width="718.2" Condition="[Patients.PatientId]">
+      <DataBand Name="Data1" Top="45.8" Width="718.2" Height="236.25" DataSource="new_table">
+        <TextObject Name="Text4" Top="70.87" Width="94.5" Height="18.9" Text="Full name" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text5" Left="94.5" Top="70.87" Width="623.7" Height="18.9" Text="[new_table.Full name]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text6" Top="99.22" Width="94.5" Height="18.9" Text="DOB" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text7" Left="94.5" Top="127.57" Width="623.7" Height="18.9" Text="[new_table.AGE]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text8" Top="155.92" Width="94.5" Height="18.9" Text="Address" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text9" Left="94.5" Top="155.92" Width="623.7" Height="18.9" Text="[new_table.Address]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text10" Top="184.27" Width="94.5" Height="18.9" Text="Institution&#13;&#10;" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text11" Left="103.95" Top="184.27" Width="623.7" Height="18.9" Text="[new_table.Name]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text12" Top="212.62" Width="94.5" Height="18.9" Text="Doctor" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text16" Top="127.57" Width="94.5" Height="18.9" Text="AGE" Font="Arial, 12pt, style=Bold" Style="Title"/>
+        <TextObject Name="Text17" Left="94.5" Top="99.22" Width="623.7" Height="18.9" Text="[new_table.DOB]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text13" Left="94.5" Top="212.62" Width="623.7" Height="18.9" Hyperlink.Kind="Bookmark" Bookmark="[PatientsInformation2.PatientId]=[Table3.PatientId]" Text="[new_table.fullnamedoctor]" Font="Arial, 10pt" Style="Data"/>
+        <TextObject Name="Text2" Left="245.7" Top="42.52" Width="226.8" Height="18.9" Text="[new_table.PatientId]" Font="Arial, 10pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="286.05" Width="718.2" Height="9.45"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="299.5" Width="718.2" Height="18.9">
+      <TextObject Name="Text15" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="White" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

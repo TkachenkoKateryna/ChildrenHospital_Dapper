@@ -1,0 +1,6 @@
+﻿<parents>
+<row PatientId="3" Full_x0020_name="Razumovskay Irina Vitalievna" DOB="2006-08-24" AGE="13" Address="str. Buchma 6 fl. 109" Name="Kharkivska Hymnasia 144" fullnamedoctor="Gordienko Valentina Stepanovna" />
+<row PatientId="4" Full_x0020_name="Filipenko Leonid Aleksandrovich" DOB="2017-07-21" AGE="2" Address="str. Buchma 8 fl. 119" Name="Kindergarden 7" fullnamedoctor="Gordienko Valentina Stepanovna" />
+<row PatientId="5" Full_x0020_name="Kisel Petro Leonidovich" DOB="2016-10-11" AGE="3" Address="str. Naukova 12 fl. 9" Name="Kindergarden 12" fullnamedoctor="Vialko Oksana Aleksandrovna" />
+<row PatientId="6" Full_x0020_name="Luchlo Valentina Vitalievna" DOB="2009-10-14" AGE="10" Address="str. Rodnikova 3 fl. 19" Name="Kindergarden 10" fullnamedoctor="Vialko Oksana Aleksandrovna" />
+</parents>

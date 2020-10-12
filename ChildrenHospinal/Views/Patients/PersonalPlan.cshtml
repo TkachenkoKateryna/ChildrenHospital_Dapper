@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "PersonalPlan";
+}
+
+@model ChildrenHospinal.ViewModels.PersonalPlanViewMode
+
+<h1 style="text-align:center;">Персональный план прививок</h1>
+<div style="text-align:center;font-size:36px;margin-bottom:15px;">
+    <strong>@Model.Patient.FullName</strong>
+</div>
+<div style="font-size:20px;">Дата рождения: @Model.Patient.DOB.ToShortDateString()</div>
+<div style="text-align:left;font-size:20px;margin-bottom:15px;">
+    Доктор: @Model.Patient.Doctor.FullName
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead style="background:green;">
+        <tr>
+            <th>
+                Дата
+            </th>
+            <th>
+                Вакцинация
+            </th>
+            <th>
+                Информация
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Plan.ToList())
+        {
+        <tr>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

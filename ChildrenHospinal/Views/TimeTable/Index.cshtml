@@ -1,0 +1,139 @@
+﻿@model IEnumerable<IGrouping<DateTime, ChildrenHospinal.Models.TimeTable.TimeTable>>
+@{
+    ViewData["Title"] = "Index";
+    <link href="~/Content/Calendar.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+}
+
+<h2 style="text-align:center">Рассписание на декабрь</h2>
+
+
+@foreach (var item in Model)
+{
+    var s = @item.Key.Day;
+    <div style="display:none;font-size:18px; margin-bottom:20px;" id=s>
+        <strong>
+            День недели: @item.Key.DayOfWeek Дата: @item.Key
+        </strong>
+            @foreach (var raw in item)
+            {
+                <div style="margin-bottom:20px;"><strong> @Html.DisplayFor(modelItem => raw.Doctor.FullName)</strong> <span>  @Html.DisplayFor(modelItem => raw.Speciality.Name) </span></div>
+                <div><strong> Время начала прийома</strong> @Html.DisplayFor(modelItem => raw.StartTime) <span>  @Html.DisplayFor(modelItem => raw.EndTime) </span></div>
+                <div><strong> Кабинет</strong>  @Html.DisplayFor(modelItem => raw.Room)</div>
+                <div> <strong> Дата</strong>  @Html.DisplayFor(modelItem => raw.Date)</div>
+            }
+</div>
+}
+
+<div class="containerc">
+
+    <div class="calendar-containerc">
+
+        <header>
+
+            <div class="dayc">21</div>
+            <div class="monthc">Декабря</div>
+
+        </header>
+
+        <table class="calendarc">
+
+            <thead>
+
+                <tr>
+
+                    <td>Mon</td>
+                    <td>Tue</td>
+                    <td>Wed</td>
+                    <td>Thu</td>
+                    <td>Fri</td>
+                    <td>Sat</td>
+                    <td>Sun</td>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td class="prev-month">25</td>
+                    <td class="prev-month">26</td>
+                    <td class="prev-month">27</td>
+                    <td class="prev-month">28</td>
+                    <td class="prev-month">29</td>
+                    <td class="prev-month">30</td>
+                    <td class="prev-month">1</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tr>
+
+                <tr>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td class="click">21</td>
+                    <td class="click">22</td>
+                </tr>
+
+                <tr>
+                    <td class="click">23</td>
+                    <td class="click current-dayc" id="id1" value ="24">24</td>
+                    <td class="click">25</td>
+                    <td class="click">26</td>
+                    <td class="click">27</td>
+                    <td class="click">28</td>
+                    <td class="click">29</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>31</td>
+                    <td class="next-month click">1</td>
+                    <td class="next-month click">2</td>
+                    <td class="next-month click">3</td>
+                    <td class="next-month click">4</td>
+                    <td class="next-month click">5</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="ring-left"></div>
+        <div class="ring-right"></div>
+
+    </div> <!-- end calendar-container -->
+
+</div> <!-- end container -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var el = $('#id').val;
+            $('#id1').on('click', function () {
+                $('.containerc').attr('style', 'display:none;');
+                $('#s').attr('style', 'display:block;');
+            });
+        });
+    </script>
+}

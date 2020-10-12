@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<ChildrenHospinal.Models.Patients.Patient>
+
+<h1 style="text-align:center">Пациенты</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Номер карточки
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Дата рождения
+            </th>
+            <th>
+                Адрес
+            </th>
+            <th>
+                Учебное заведение
+            </th>
+            <th>
+                Педиатр
+            </th>
+            <th style="background:orange;">
+                Персональный план
+            </th>
+            <th style="background:orange;">
+                Справка о прививках
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @item.DOB.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Institution.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.FullName)
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-th-list" style="text-align:center" asp-action="PersonalPlan" asp-route-id="@item.PatientId"></a>
+            </td> 
+            <td>
+                <a class="glyphicon glyphicon-save-file" style="text-align:center" asp-controller="PdfCreator" asp-action="CreatePDFForVaccinations" asp-route-id="@item.PatientId"></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

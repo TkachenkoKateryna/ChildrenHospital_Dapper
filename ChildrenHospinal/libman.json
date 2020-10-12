@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@3.3.7",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "bootbox.js@5.3.2",
+      "destination": "wwwroot/lib/bootbox.js/"
+    },
+    {
+      "library": "bootstrap-datetimepicker@4.17.45",
+      "destination": "wwwroot/lib/bootstrap-datetimepicker/"
+    }
+  ]
+}

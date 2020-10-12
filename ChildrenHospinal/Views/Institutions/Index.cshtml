@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<ChildrenHospinal.Models.Institutions.Institution>
+
+<h2 style="text-align:center">Учебные заведения</h2>
+
+<p>
+    <a asp-action="Create"><i class="glyphicon glyphicon-plus-sign plus"></i></a>
+</p>
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Номер
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Адрес
+            </th>
+            <th>
+                Телефонный номер
+            </th>
+            <th>
+                Директор
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstitutionId)
+            </td>
+            <td>
+                <a id="" asp-action="Edit" asp-route-id="@item.InstitutionId">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Director)
+            </td>
+            <td>
+                <a class="js-delete-institution glyphicon glyphicon-remove" data-institution-id="@item.InstitutionId" data-institution-name="@item.Name"></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(".js-delete-institution").on("click", function (e) {
+                var link = $(e.target);
+                var str = "Вы уверенны, что хотите удалить данное заведение" + " [ " + link.attr('data-institution-id') + " " + link.attr('data-institution-name') +"]" ;
+                bootbox.dialog({
+                    title: "Confirm",
+                    message: "<p>" + str + "</p>",
+                    size: 'large',
+                    buttons: {
+                        no: {
+                            label: "No",
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: `/api/institutions?institutionId=${link.attr('data-disease-id')}`,
+                                    method: "POST"
+                                })
+                                    .done(function () {
+                                        bootbox.hideAll();
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(xhr, status, error)
+                                alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                            },
+                        },
+                    }
+                });
+            });
+        });
+    </script>
+}

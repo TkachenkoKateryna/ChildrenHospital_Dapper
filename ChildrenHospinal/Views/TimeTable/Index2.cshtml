@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ChildrenHospinal.ViewModels.NumberOfVisits>
+@{
+    ViewData["Title"] = "Index2";
+}
+
+<h2 style="text-align:center">Количетво приемов у врачей сегодня</h2>
+
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Врач
+            </th>
+            <th>
+                Специальность
+            </th>
+            <th>
+                Количество
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

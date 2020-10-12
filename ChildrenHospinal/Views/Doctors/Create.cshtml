@@ -1,0 +1,46 @@
+﻿@model DoctorViewModel
+@using ChildrenHospinal.Models.Specialities
+
+    <form asp-action="Create" method="post" class="form-horizontal" role="form">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <h3>Создать доктора</h3>
+
+        <div class="form-group">
+            <label asp-for="Doctor.FullName" class="col-md-2 control-label">Имя</label>
+            <div class="col-md-5">
+                <input asp-for="Doctor.FullName" class="form-control" placeholder="Ex.Петренко Валентина Стеновна" />
+                <span asp-validation-for="Doctor.FullName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Doctor.PhoneNumber" class="col-md-2 control-label">Номер</label>
+            <div class="col-md-5">
+                <input asp-for="Doctor.PhoneNumber" class="form-control" placeholder="Ex.0996822142" />
+                <span asp-validation-for="Doctor.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Doctor.Degree" class="col-md-2 control-label">Звание</label>
+            <div class="col-md-5">
+                <input asp-for="Doctor.Degree" class="form-control"   placeholder="Ex.Кандитат Наук"/>
+                <span asp-validation-for="Doctor.Degree" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.items, "Специальности", new { @class = "col-md-2 control-label" })
+            @Html.ListBoxFor(m => m.items, Model.Specilities)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" class="btn btn-primary" style="background-color: #006400;" value="Создать" />
+            </div>
+        </div>
+    </form>
+
+

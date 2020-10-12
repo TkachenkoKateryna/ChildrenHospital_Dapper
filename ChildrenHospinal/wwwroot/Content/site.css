@@ -1,0 +1,229 @@
+﻿/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #eeeeee;
+}
+
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+    .caption h4 {
+        white-space: nowrap;
+    }
+
+.thumbnail img {
+    width: 100%;
+}
+
+.addToCart {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+    .thumbnail .caption-full {
+        padding: 9px;
+        color: #333;
+    }
+
+footer {
+    margin: 50px 0;
+}
+
+.notifications {
+    list-style: none;
+}
+
+
+.notifications > li .day {
+        background: white;
+        color: #333;
+    }
+
+
+    .notifications > li .date {
+        background: red;
+        color: white;
+        text-align: center;
+        width: 70px;
+        border-radius: 8px;
+    }
+
+        .notifications > li .date .month {
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 2px 6px;
+        }
+
+        .notifications > li .date .year {
+            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 2px 6px;
+        }
+
+    .notifications > li {
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+        .notifications > li .details {
+            position: absolute;
+            top: 0;
+            left: 90px;
+        }
+
+
+
+.navbar {
+    background-image: none;
+}
+
+a:hover, a:focus
+{
+    color: orangered;
+    text-decoration: none;
+} 
+       
+
+
+.navbar-inverse {
+    background-color: #6d6d6d;
+    border-color: #6d6d6d;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: white;
+    font-size: 1.2em;
+}
+
+.navbar .nav > li > a {
+    font-size: 1.2em;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.carousel .item {
+    height: 400px;
+}
+
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    background-color: #013220 !important;
+    border-color: #013220 !important;
+}
+
+/*.btn {
+    background-color: #fcaeae !important;
+    border-color: #fba1a1 !important;
+}*/
+
+a{
+    color:black;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #F7AF25;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+table {
+    font-size: 17px;
+    background: #ffffff;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+thead {
+    background-color: #1b1b1b;
+    color: #ffffff;
+}
+
+.plus {
+    margin-left: 340px;
+}
+
+.glyphicon-plus-sign {
+    font-size: 50px;
+}
+    a:hover, a:focus {
+        color: orangered;
+        text-decoration: none;
+    }
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+/*/////////////////////////*/
+

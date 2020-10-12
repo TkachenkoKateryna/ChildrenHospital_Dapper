@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ChildrenHospinal.Models.Vaccinations.CrossRequest>
+@{
+    ViewData["Title"] = "Index3";
+}
+
+<h2 style="text-align:center">Прививки по возврастам</h2>
+
+<table class="table table-bordered table-responsive table-striped">
+<thead>
+    <tr>
+        <th>
+            Возвраст
+        </th>
+        <th>
+            Коклюш
+        </th>
+        <th>
+            Полиомелит
+        </th>
+        <th>
+            Хиб-инфекция
+        </th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AGE)
+            </td>
+            <td>
+                @if(item.Коклюш == 1)
+                {<text>+</text>}
+                else
+                {<text>-</text>}
+            </td>
+            <td>
+                @if(@item.Полиомелит == 1)
+                {<text>+</text>}
+                else
+                {<text>-</text>}
+            </td>
+            <td>
+                @if(@item.Хибинфекция == 1)
+                {<text>+</text>}
+                else
+                {<text>-</text>}
+            </td>
+        </tr>
+    }
+</tbody>
+</table>

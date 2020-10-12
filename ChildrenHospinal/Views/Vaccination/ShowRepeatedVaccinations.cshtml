@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<ChildrenHospinal.Models.Vaccinations.RepeatedVaccinations>
+
+<h1 style="text-align:center;">Повторяющиеся прививки</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Число повторений
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VaccinationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfRepetitions)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

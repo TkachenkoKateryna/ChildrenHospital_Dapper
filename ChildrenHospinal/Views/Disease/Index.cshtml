@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<ChildrenHospinal.Models.Diseases.Disease>
+
+<h1 style="text-align:center">
+    Болезни
+</h1>
+<p>
+    <a style="margin-left:450px;" asp-action="Create" ><i class="glyphicon glyphicon-plus-sign plus"></i></a>
+</p>
+<table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Код
+            </th>
+            <th>
+                Информация
+            </th>
+            <th>
+                Ифективность
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => item.DiseaseId)
+                <td>
+                    <a id="" asp-action="Edit" asp-route-id="@item.DiseaseId"> @Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Information)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Infectivity)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(".js-delete-disease").on("click",function (e) {
+                var link = $(e.target);
+                bootbox.dialog({
+                    title: "Confirm",
+                    message: "<p>Are you sure you want delete this disease</p>",
+                    size: 'large',
+                    buttons: {
+                        no: {
+                            label: "No",
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: `/api/disease?diseaseId=${link.attr('data-disease-id')}`,
+                                    method: "POST"
+                                })
+                                    .done(function () {
+                                        bootbox.hideAll();
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(xhr, status, error)
+                                alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                            },
+                        },
+                    }
+                });
+            });
+        });
+    </script>
+}
